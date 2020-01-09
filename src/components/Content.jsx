@@ -9,14 +9,71 @@ import Label from './Label';
 
 export class Content extends Component {
 
+    constructor(props) {
+        super(props);
+        this.initPro = this.initPro.bind(this);
+        this.getColorByAdcode = this.initPro.bind(this);
+    }
+
     componentDidMount() {
         const AMap = window.AMap;
         this.mapApp = new AMap.Map('map_container', {
             resizeEnable: true, //是否监控地图容器尺寸变化
             zoom: 10, //初始化地图层级
-            center: [112.931420, 28.235193] //初始化地图中心点
+            center: [112.931420, 28.235193], //初始化地图中心点
+            viewMode: '3D',
+            pitch: 0,
         });
+        this.initPro();
     }
+
+    /**
+     * 
+     * @param {String} code 省级地理位置编码 默认湖南
+     * @param {Number} dep 划分单位 默认为 1 市级
+     */
+    initPro(code = 430000, dep = 1) {
+        const AMap = window.AMap;
+        const self = this;
+
+        self.colors = {};
+        self.adCode = code;
+        self.depth = dep;
+
+        self.disProvince && self.disProvince.setMap(null);
+
+        self.disProvince = new AMap.DistrictLayer.Province({
+            zIndex: 12,
+            adcode: [code],
+            depth: dep,
+            styles: {
+                'fill': function (properties) {
+                    // properties为可用于做样式映射的字段，包含
+                    // NAME_CHN:中文名称
+                    // adcode_pro
+                    // adcode_cit
+                    // adcode
+                    const adcode = properties.adcode;
+                    return self.getColorByAdcode(adcode);
+                },
+                'province-stroke': 'cornflowerblue',
+                'city-stroke': 'white', // 中国地级市边界
+                'county-stroke': 'rgba(255,255,255,0.5)' // 中国区县边界
+            }
+        });
+
+        this.disProvince.setMap(this.mapApp);
+    }
+
+
+    getColorByAdcode(adcode) {
+        if (!this.colors[adcode]) {
+            var gb = Math.random() * 155 + 50;
+            this.colors[adcode] = 'rgba(' + gb + ',' + gb + ',255, .4)';
+        }
+
+        return this.colors[adcode];
+    };
 
 
     render() {

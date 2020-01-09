@@ -36,7 +36,9 @@ $color-error: #fb7e7a;
             float: left;
 
             span {
-                margin-right: 8px;
+                margin-left: 48px;
+                margin-right: 32px;
+                font-size: 20px;
             }
 
             .select {
@@ -170,11 +172,70 @@ $color-error: #fb7e7a;
 }
 
 .select {
-    height: 52px;
-    width: 124px;
-    text-align-last: center;
+
+    display: inline-block;
+    position: relative;
+
+    select {
+        height: 52px;
+        text-align-last: center;
+        display: inline-block;
+        color: #495057;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        font-size: 20px;
+        appearance: none;
+        padding: 0 40px 0 24px;
+
+        &:focus {
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0.1rem rgba(128, 189, 255, .1);
+        }
+    }
+
+    i {
+        position: absolute;
+        font-size: 48px;
+        right: -2px;
+    }
 }
 
+.searchBox {
+
+    position: relative;
+    height: 50px;
+    line-height: 50px;
+
+    input {
+        width: 440px;
+        height: 50px;
+        border: none;
+        border-radius: 25px;
+        outline: 0;
+        background: #e8e8e8;
+        font-size: 20px;
+        padding: 0 24px;
+
+        &::placeholder {
+            color: #727272;
+        }
+    }
+
+    .btn {
+        background: url(../assets/img/so.png);
+        background-size: 100% 100%;
+        position: absolute;
+        top: 2px;
+        bottom: 0;
+        margin: auto 0;
+        right: 16px;
+        width: 28px;
+        height: 28px;
+        border: 0;
+        cursor: pointer;
+    }
+}
 
 .tag {
 
