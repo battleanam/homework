@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 This is the final result:
 
-![ending](.\src\assets\img\ending.png)
+![if it does not work, please go to 'src/assets/img/ending.png'](.\src\assets\img\ending.png)
 
 In the project directory, you can run:
 
