@@ -2,6 +2,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+This is the final result:
+
+![ending](.\src\assets\img\ending.png)
+
 In the project directory, you can run:
 
 ### `yarn start`
